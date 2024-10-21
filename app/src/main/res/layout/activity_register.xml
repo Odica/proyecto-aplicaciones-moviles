@@ -11,15 +11,22 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="289dp"
-        android:layout_height="563dp"
+        android:layout_width="371dp"
+        android:layout_height="691dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/baseline_account_box_24" />
+        <TextView
+            android:id="@+id/registerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:text="Registro de Usuario"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/username_input"
@@ -36,7 +43,21 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/password_input"
+            android:id="@+id/correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Correo"
+            android:inputType="textPassword"
+            android:padding="18dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/password_input_registro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -49,15 +70,18 @@
             android:textColorHint="@color/white"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/login_button"
+        <EditText
+            android:id="@+id/password_input_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/white"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Confirmar contraseña"
+            android:inputType="textPassword"
             android:padding="18dp"
-            android:text="Login"
-            android:textColor="#3B84F1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="20sp" />
 
         <Button

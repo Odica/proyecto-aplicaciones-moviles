@@ -11,48 +11,26 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
-
-    private Button loginButton;
-    private Button registerButton;
-
+public class Register extends AppCompatActivity {
+    private Button cuenta_nueva_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
-
+        setContentView(R.layout.activity_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-        loginButton = findViewById(R.id.login_button);
-        registerButton = findViewById(R.id.cuenta_nueva_button);
-
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        cuenta_nueva_button = findViewById(R.id.cuenta_nueva_button);
+        cuenta_nueva_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, ListadoProductosActivity.class);
+                Intent intent = new Intent(Register.this, ListadoProductosActivity.class);
                 startActivity(intent);
             }
         });
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Register.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-
     }
 }
