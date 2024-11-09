@@ -17,7 +17,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.tiendavirtual.databinding.ActivityLocationBinding;
-import com.example.tiendavirtual.databinding.ActivityMainBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Granularity;
 import com.google.android.gms.location.LocationCallback;
@@ -41,7 +40,6 @@ public class location extends AppCompatActivity {
         binding = ActivityLocationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Solicitud de permisos
         solicitarPermisosUbicacion();
     }
 

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,10 +13,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
+    private EditText username_login;
+    private EditText password_login;
     private Button loginButton;
     private Button registerButton;
+
+    public static List<Usuario> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        username_login = findViewById(R.id.username_login);
+        password_login = findViewById(R.id.password_login);
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.cuenta_nueva_button);
 
@@ -37,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, ListadoProductosActivity.class);
-                startActivity(intent);
+                loginUser();
             }
         });
 
@@ -50,9 +58,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    private void loginUser(){
+        String name = username_login.getText().toString();
+        String password = password_login.getText().toString();
 
+        for (Usuario usuario : userList){
+            if(usuario.getName().equals(name) && usuario.getPassword().equals(password)){
+                Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ListadoProductosActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        }
+        Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+    }
 
-
+    public static void addUser(Usuario usuario){
+        userList.add(usuario);
     }
 }

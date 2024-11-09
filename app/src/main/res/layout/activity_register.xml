@@ -29,7 +29,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/username_input"
+            android:id="@+id/username_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -43,21 +43,21 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/correo"
+            android:id="@+id/email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_corner"
             android:ems="10"
             android:hint="Correo"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:padding="18dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/password_input_registro"
+            android:id="@+id/password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -71,7 +71,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/password_input_confirm"
+            android:id="@+id/password_confirm_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -85,7 +85,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/cuenta_nueva_button"
+            android:id="@+id/registro_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"

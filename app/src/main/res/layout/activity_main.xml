@@ -22,7 +22,7 @@
             android:src="@drawable/baseline_account_box_24" />
 
         <EditText
-            android:id="@+id/username_input"
+            android:id="@+id/username_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -36,7 +36,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/password_input"
+            android:id="@+id/password_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
