@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TiendaVirtual"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBJhfdzqx6DEyVqSVnWij3Ul5l3NVmEhCI" />
+
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
