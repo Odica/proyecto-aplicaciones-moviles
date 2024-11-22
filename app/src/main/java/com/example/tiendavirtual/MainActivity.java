@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password_login;
     private Button loginButton;
     private Button registerButton;
+    private UsuarioDao usuarioDAO;
 
     public static List<Usuario> userList = new ArrayList<>();
 
@@ -37,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        usuarioDAO = new UsuarioDao(this); // Inicializa el DAO
 
         username_login = findViewById(R.id.username_login);
         password_login = findViewById(R.id.password_login);
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.cuenta_nueva_button);
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,23 +61,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(){
+    private void loginUser() {
         String name = username_login.getText().toString();
         String password = password_login.getText().toString();
 
-        for (Usuario usuario : userList){
-            if(usuario.getName().equals(name) && usuario.getPassword().equals(password)){
-                Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, ListadoProductosActivity.class);
-                startActivity(intent);
-                finish();
-                return;
-            }
+        if (usuarioDAO.iniciarSesion(name, password)) {
+            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, ListadoProductosActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-    }
-
-    public static void addUser(Usuario usuario){
-        userList.add(usuario);
     }
 }

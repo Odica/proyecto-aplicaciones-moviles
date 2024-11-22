@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class Register extends AppCompatActivity {
     private EditText username_register, email_register, password_register, password_confirm_register;
     private Button registro_button;
+    private UsuarioDao usuarioDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class Register extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        usuarioDao = new UsuarioDao(this); // Inicializa el DAO
 
         username_register = findViewById(R.id.username_register);
         email_register = findViewById(R.id.email_register);
@@ -42,28 +45,33 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String name = username_register.getText().toString();
-        String email = email_register.getText().toString();
-        String password = password_register.getText().toString();
-        String confirmPassword = password_confirm_register.getText().toString();
+        String name = username_register.getText().toString().trim();
+        String email = email_register.getText().toString().trim();
+        String password = password_register.getText().toString().trim();
+        String confirmPassword = password_confirm_register.getText().toString().trim();
 
-        if(name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!password.equals(confirmPassword)){
+        if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Usuario newUsuario = new Usuario(name, email, password);
-        MainActivity.addUser(newUsuario);
+        UsuarioDao usuarioDAO = new UsuarioDao(this); // Inicializa el DAO
 
-        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(Register.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        if (usuarioDAO.registrarUsuario(newUsuario)) {
+            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Register.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Error al registrar (¿email ya existe?)", Toast.LENGTH_SHORT).show();
+        }
     }
+
+
 }
