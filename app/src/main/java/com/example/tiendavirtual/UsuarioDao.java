@@ -39,4 +39,44 @@ public class UsuarioDao {
         db.close();
         return existe;
     }
+
+    // Obtener el primer usuario de la tabla
+    public Usuario obtenerPrimerUsuario() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM usuarios LIMIT 1", null);
+
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+            String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+            cursor.close();
+            db.close();
+            return new Usuario(name, email, password);
+        } else {
+            cursor.close();
+            db.close();
+            return null; // No hay usuarios
+        }
+    }
+
+    // Actualizar un usuario
+    public boolean actualizarUsuario(Usuario usuario) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", usuario.getName());
+        values.put("email", usuario.getEmail());
+        values.put("password", usuario.getPassword());
+
+        int rows = db.update("usuarios", values, "email = ?", new String[]{usuario.getEmail()});
+        db.close();
+        return rows > 0;
+    }
+
+    // Eliminar un usuario
+    public boolean eliminarUsuario(String email) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int rows = db.delete("usuarios", "email = ?", new String[]{email});
+        db.close();
+        return rows > 0;
+    }
 }
