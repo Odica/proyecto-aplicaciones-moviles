@@ -9,6 +9,7 @@
     android:background="@drawable/productos_background"
     tools:context=".Carrito">
 
+    <!-- Título del carrito -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,13 +35,16 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCart"
+    <!-- LinearLayout para productos -->
+    <LinearLayout
+        android:id="@+id/productosLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:orientation="vertical"
         android:scrollbars="vertical"/>
 
+    <!-- Total a pagar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +65,7 @@
             android:id="@+id/totalProducts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="4850000"
             android:textSize="18sp"
             android:textStyle="bold"
             android:paddingEnd="8dp"/>
